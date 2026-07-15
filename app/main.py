@@ -3,12 +3,13 @@ from fastapi import FastAPI
 
 from app.api.health import router as health_router
 from app.core.config import settings
+from app.core.logging import logger
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Starting Nexus AI Workspace")
+    logger.info("Starting Nexus AI Workspace...")
     yield
-    print("Shutting Down Nexus AI Workspace")
+    logger.info("Shutting down Nexus AI Workspace...")
 
 app = FastAPI(
     title=settings.app_name,
